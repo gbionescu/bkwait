@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ "$#" -ne 3 ]; then
+    echo "$0 file-to-check sleep-interval max-loops"
+    exit 1
+fi
+
+to_wait=$1
+interval=$2
+max_loops=$3
+
+touch "$to_wait"
+
+while true
+do
+    if [ -f "$to_wait" ]; then
+        echo "File exists."
+        sleep "$interval"
+    else
+        exit 0
+    fi
+
+    max_loops=$((max_loops-1))
+
+    if [ "$max_loops" -eq 0 ]; then
+        echo "Wait expired!"
+        exit 1
+    fi
+done
