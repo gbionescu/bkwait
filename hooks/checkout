@@ -1,13 +1,8 @@
 #!/bin/bash
 
-if [ "$#" -ne 3 ]; then
-    echo "$0 file-to-check sleep-interval max-loops"
-    exit 1
-fi
-
-to_wait=$1
-interval=$2
-max_loops=$3
+to_wait="tempfile"
+interval=1
+max_loops=300
 
 touch "$to_wait"
 
